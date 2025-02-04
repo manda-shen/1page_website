@@ -13,64 +13,85 @@ include_once "api/db.php";
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>卓越科技大學校園資訊系統</title>
-    <link href="./css/css.css" rel="stylesheet" type="text/css">
-    <script src="./js/jquery-1.9.1.min.js"></script>
-    <script src="./js/js.js"></script>
+    <title>天空小品-療愈農場</title>
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;    700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">  
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/    all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/    bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"     rel="stylesheet" />
+    
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+        <script src="./js/jquery-1.9.1.min.js"></script>
+        <script src="./js/js.js"></script>
 </head>
 
 <body>
-    <div id="cover" style="display:none; ">
-        <div id="coverr">
-            <a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;"
-                onclick="cl('#cover')">X</a>
-            <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
+    <div style="display:none; ">
+        <div>
+            <a onclick="cl('#cover')">X</a>
+            <div id="cvr"></div>
         </div>
     </div>
     <div id="main">
         <a title="<?=$Title->find(['sh'=>1])['text'];?>" href="index.php">
-            <div class="ti" style="background:url('./upload/<?=$Title->find(['sh'=>1])['img'];?>'); background-size:cover;"></div>
+            <div style="background:url('./upload/<?=$Title->find(['sh'=>1])['img'];?>'); background-size:cover;"></div>
             <!--標題-->
         </a>
         <div id="ms">
             <div id="lf" style="float:left;">
-                <div id="menuput" class="dbor">
+                <div id="menuput" class="card" style="width: 18rem;">
                     <!--主選單放此-->
-                    <span class="t botli">後台管理選單</span>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=title">
-                        <div class="mainmu">
-                            網站標題管理 </div>
+                    <span class="card-header">後台管理選單</span>
+                    <a href="?do=title">
+                        <div type="button" class="btn btn-light">
+                            LOGO </div>
                     </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=ad">
-                        <div class="mainmu">
+                    <a href="?do=ad">
+                        <div type="button" class="btn btn-light">
                             動態文字廣告管理 </div>
                     </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=mvim">
-                        <div class="mainmu">
+                    <a href="?do=mvim">
+                        <div type="button" class="btn btn-light">
                             動畫圖片管理 </div>
                     </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=image">
-                        <div class="mainmu">
+                    <a href="?do=image">
+                        <div type="button" class="btn btn-light">
                             校園映象資料管理 </div>
                     </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=total">
-                        <div class="mainmu">
+                    <a href="?do=total">
+                        <div type="button" class="btn btn-light">
                             進站總人數管理 </div>
                     </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=bottom">
-                        <div class="mainmu">
+                    <a href="?do=bottom">
+                        <div type="button" class="btn btn-light">
                             頁尾版權資料管理 </div>
                     </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=news">
-                        <div class="mainmu">
+                    <a href="?do=news">
+                        <div type="button" class="btn btn-light">
                             最新消息資料管理 </div>
                     </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin">
-                        <div class="mainmu">
+                    <a href="?do=admin">
+                        <div type="button" class="btn btn-light">
                             管理者帳號管理 </div>
                     </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=menu">
-                        <div class="mainmu">
+                    <a href="?do=menu">
+                        <div type="button" class="btn btn-light">
                             選單管理 </div>
                     </a>
 
