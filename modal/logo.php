@@ -1,9 +1,9 @@
 <h3 class="cent">新增標題區圖片</h3>
 <hr>
-<form action="api/insert_title.php" method="post" enctype="multipart/form-data">
+<form action="api/insert.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>標題區圖片：</td>
+            <td>標題區圖片</td>
             <td><input type="file" name="img" id="img"></td>
         </tr>
         <tr>
@@ -17,3 +17,5 @@
         <input type="reset" value="重置">
     </div>
 </form>
+<a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;"
+            onclick="cl('#cover')">X</a>

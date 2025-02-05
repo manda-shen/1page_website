@@ -162,7 +162,7 @@ function to($url){
     header("location:".$url);
 }
 
-$Title=new DB('titles');
+$Logo=new DB('logo');
 $Ad=new DB('ads');
 $Image=new DB('images');
 $Mvim=new DB('mvims');

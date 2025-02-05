@@ -12,6 +12,7 @@ if(isset($_POST['id'])){
         }
     }
 }
+
 if(isset($_POST['text2'])){
     foreach($_POST['text2'] as $idx => $text){
         if($text!=''){
@@ -23,4 +24,7 @@ if(isset($_POST['text2'])){
         }
     }
 }
+
 to("../admin.php?do=menu");
+
+?>
