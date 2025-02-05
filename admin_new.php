@@ -51,7 +51,7 @@ $do = $_GET['do'] ?? 'home';
     <div id="cover" style="display:none; ">
         <div id="coverr">
             
-            <div id="cvr" class="modal service-item">
+            <div id="cvr" class="modal">
 
             </div>
         </div>

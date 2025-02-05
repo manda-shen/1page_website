@@ -16,6 +16,6 @@ if(isset($_FILES['img']['tmp_name'])){
     $$db->save($row);
 }
 
-to("../admin.php?do=$table");
+to("../admin_new.php?do=$table");
 
 ?>

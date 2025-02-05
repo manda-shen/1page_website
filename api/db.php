@@ -166,9 +166,9 @@ $Logo=new DB('logo');
 $Ad=new DB('ads');
 $Image=new DB('images');
 $Mvim=new DB('mvims');
-$News=new DB('news');
+$About=new DB('about');
 $Admin=new DB('admin');
-$Menu=new DB('menus');
+$List=new DB('lists');
 $Total=new DB('total');
 $Bottom=new DB('bottom');
 

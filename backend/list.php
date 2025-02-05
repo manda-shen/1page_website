@@ -12,35 +12,37 @@
         </tbody>
     </table>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-        <p class="t cent botli">最新消息資料管理</p>
+        <p class="t cent botli">選單管理</p>
         <form method="post" target="back" action="./api/edit.php">
             <table width="100%">
                 <tbody>
                     <tr class="yel">
-                        <td width="80%">最新消息資料內容</td>
+                        <td width="30%">主選單名稱</td>
+                        <td width="30%">選單連結網址</td>
+                        <td width="10%">次選單數</td>
                         <td width="10%">顯示</td>
                         <td width="10%">刪除</td>
+                        <td></td>
                     </tr>
-                    <?php 
-
-                    $div=4;
-                    $total=$News->count();
-                    $pages=ceil($total/$div);
-                    $now=$_GET['p']??1;
-                    $start=($now-1)*$div;
-
-                    $rows=$News->all(" limit $start,$div");
+                    <?php
+                    $rows=$List->all(['main_id'=>0]);
                     foreach($rows as $row){
                     ?>
                     <tr>
                         <td>
-                            <textarea name="text[]" style="width:95%;height:55px"><?=$row['text']; ?></textarea>
-                        </td>
+                            <input type="text" name="text[]" value="<?=$row['text']; ?>"></td>
                         <td>
-                            <input type="checkbox" name="sh[]" value="<?=$row['id']; ?>" <?=($row['sh']==1)?'checked':''; ?>>
+                            <input type="text" name="href[]" value="<?=$row['href']; ?>"></td>
+                        <td><?=$List->count(['main_id'=>$row['id']]);?></td>
+                        <td>
+                            <input type="checkbox" name="sh[]" value="<?=$row['id']; ?>"<?=($row['sh']==1)?'checked':'' ;?>>
                         </td>
                         <td>
                             <input type="checkbox" name="del[]" value="<?=$row['id']; ?>">
+                        </td>
+                        <td>
+                            <input type="button" value="編輯次選單"
+                            onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modal/submenu.php?id=<?=$row['id'];?>&#39;)">
                         </td>
                         <input type="hidden" name="id[]" value="<?=$row['id']; ?>">
                     </tr>
@@ -49,37 +51,13 @@
                     ?>
                 </tbody>
             </table>
-            <div class="cent">
-                <?php    
-
-                if($now-1>0){
-                    $prev=$now-1;
-                    echo "<a href='?do=$do&p=$prev'>";
-                    echo "<";
-                    echo "</a>";
-                }
-                for($i=1;$i<=$pages;$i++){
-                    echo "<a href='?do=$do&p=$i'>";
-                    echo "$i";
-                    echo "</a>";
-
-                }
-                if(($now+1)<=$pages){
-                    $next=$now+1;
-                    echo "<a href='?do=$do&p=$next'>";
-                    echo ">";
-                    echo "</a>";
-                }
-
-                ?>
-            </div>
             <table style="margin-top:40px; width:70%;">
                 <tbody>
                     <tr>
                         <td width="200px">
                             <input type="button"
                                 onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modal/<?=$do;?>.php?table=<?=$do;?>&#39;)"
-                                value="新增最新消息資料">
+                                value="新增主選單">
                         </td>
                         <td class="cent">
                             <input type="hidden" name="table" value="<?=$do;?>">

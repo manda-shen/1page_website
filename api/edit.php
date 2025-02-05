@@ -20,7 +20,7 @@ if(isset($_POST['id'])){
                     $row['acc']=$_POST['acc'][$idx];
                     $row['pw']=$_POST['pw'][$idx];
                     break;
-                case "menu":
+                case "list":
                     $row['text']=$_POST['text'][$idx];
                     $row['href']=$_POST['href'][$idx];
                     $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
@@ -36,5 +36,5 @@ if(isset($_POST['id'])){
     }
 }
 
-to("../admin.php?do=$table");
+to("../admin_new.php?do=$table");
 ?>

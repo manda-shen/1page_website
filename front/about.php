@@ -9,11 +9,11 @@
     <ul class="ssaa" style="list-style-type:decimal;">
         <?php
             $div=5;
-            $total=$News->count();
+            $total=$About->count();
             $pages=ceil($total/$div);
             $now=$_GET['p']??1;
             $start=($now-1)*$div;
-            $rows=$News->all(" limit $start,$div");
+            $rows=$About->all(" limit $start,$div");
             echo "<ol start='".($start+1)."'>";
 
             foreach($rows as $row){

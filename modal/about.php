@@ -3,8 +3,8 @@
 <form action="api/insert.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>最新消息資料：</td>
-            <td><textarea name="text" style="width:300px;height:100px;"></textarea></td>
+            <td style="width:15%">關於我內容：</td>
+            <td><textarea name="text" style="width:80%;height:300px;"></textarea></td>
         </tr>
     </table>
     <div class="cent">
