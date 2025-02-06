@@ -97,7 +97,7 @@
                         <td width="200px">
                             <input type="button" class="btn btn-primary rounded-pill" 
                                 onclick="op('#cover','#cvr','./modal/<?=$do;?>.php?table=<?=$do;?>')"
-                                value="新增校園映像圖片">
+                                value="新增房間圖片">
                         </td>
                         <td class="cent text-end">
                             <input type="hidden" name="table" value="<?=$do;?>">
