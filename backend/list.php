@@ -1,22 +1,14 @@
-<div class="di"
-    style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
+<?php include_once "api/db.php";?>
+<div class="col-sm-12 col-xl-12">
     <!--正中央-->
-    <table width="100%">
-        <tbody>
-            <tr>
-                <td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;" class="cent"><a
-                        href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a></td>
-                <td><button onclick="document.cookie=&#39;user=&#39;;location.replace(&#39;?&#39;)"
-                        style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-        <p class="t cent botli">選單管理</p>
+
+    <div class="bg-light rounded h-100 p-4 col-sm-12 col-xl-8">
+    <p class="blockquote" style="text-align:center;">選單管理</p>
+    <hr>
         <form method="post" target="back" action="./api/edit.php">
             <table width="100%">
                 <tbody>
-                    <tr class="yel">
+                <tr class="bg-white rounded">
                         <td width="30%">主選單名稱</td>
                         <td width="30%">選單連結網址</td>
                         <td width="10%">次選單數</td>
@@ -35,14 +27,18 @@
                             <input type="text" name="href[]" value="<?=$row['href']; ?>"></td>
                         <td><?=$List->count(['main_id'=>$row['id']]);?></td>
                         <td>
-                            <input type="checkbox" name="sh[]" value="<?=$row['id']; ?>"<?=($row['sh']==1)?'checked':'' ;?>>
+                        <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="sh[]" role="switch"
+                                    id="flexSwitchCheckChecked" value="<?=$row['id']; ?>" <?=($row['sh']==1)?'checked':''; ?>>
+                                <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                            </div>
                         </td>
                         <td>
                             <input type="checkbox" name="del[]" value="<?=$row['id']; ?>">
                         </td>
                         <td>
-                            <input type="button" value="編輯次選單"
-                            onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modal/submenu.php?id=<?=$row['id'];?>&#39;)">
+                            <input type="button" class="btn btn-primary rounded-pill" value="編輯次選單"
+                            onclick="op('#cover','#cvr','./modal/submenu.php?id=<?=$row['id'];?>')">
                         </td>
                         <input type="hidden" name="id[]" value="<?=$row['id']; ?>">
                     </tr>
@@ -51,18 +47,18 @@
                     ?>
                 </tbody>
             </table>
-            <table style="margin-top:40px; width:70%;">
+            <table style="margin-top:40px; width:100%;">
                 <tbody>
                     <tr>
                         <td width="200px">
-                            <input type="button"
-                                onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modal/<?=$do;?>.php?table=<?=$do;?>&#39;)"
+                            <input type="button" class="btn btn-primary rounded-pill"
+                                onclick="op('#cover','#cvr','./modal/<?=$do;?>.php?table=<?=$do;?>')"
                                 value="新增主選單">
                         </td>
-                        <td class="cent">
+                        <td class="cent text-end">
                             <input type="hidden" name="table" value="<?=$do;?>">
-                            <input type="submit" value="修改確定">
-                            <input type="reset" value="重置">
+                            <input type="submit" class="btn btn-secondary rounded-pill" value="修改確定">
+                            <input type="reset" class="btn btn-secondary rounded-pill" value="重置">
                         </td>
                     </tr>
                 </tbody>

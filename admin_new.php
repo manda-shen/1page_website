@@ -13,7 +13,7 @@ $do = $_GET['do'] ?? 'home';
     
     <!-- Bootstrap 5 Stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style_backend.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
         <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -34,10 +34,11 @@ $do = $_GET['do'] ?? 'home';
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style_backend.css" rel="stylesheet">
     <!-- <link href="css/css.css" rel="stylesheet"> -->
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/js.js"></script>
+    <script src="./js/main_backend.js"></script>
 
 
     <style>
@@ -48,6 +49,8 @@ $do = $_GET['do'] ?? 'home';
     </style>
 </head>
 <body>
+
+
     <div id="cover" style="display:none; ">
         <div id="coverr">
             
@@ -59,7 +62,7 @@ $do = $_GET['do'] ?? 'home';
     <div class="wrapper">
         <div class="d-flex flex-grow-1">
             <!-- Sidebar -->
-            <nav class="bg-light bg-gradient p-3 sidebar" style="width: 250px; --bs-bg-opacity: .1;">
+            <nav class="bg-info bg-gradient p-4 sidebar" style="width: 250px; --bs-bg-opacity: .15;">
                 <h2 class="h5">後台管理</h2>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a href="?do=logo" class="nav-link text-muted"><i class="bi bi-house"></i> Logo 管理</a></li>
@@ -80,6 +83,17 @@ $do = $_GET['do'] ?? 'home';
 
             <!-- Main Content -->
             <main class="flex-grow-1 p-4 bg-body content">
+                
+            <table width="100%">
+        <tbody>
+            <tr>
+                <td class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0"><a
+                        href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a></td>
+                <td><button onclick="document.cookie='user=';location.replace('?')"
+                        style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
+            </tr>
+        </tbody>
+    </table>
                 <div class="container">
                     <?php if ($do === 'home'): ?>
                         <h1 class="h4">後台主頁</h1>

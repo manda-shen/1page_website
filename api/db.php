@@ -171,6 +171,7 @@ $Admin=new DB('admin');
 $List=new DB('lists');
 $Total=new DB('total');
 $Bottom=new DB('bottom');
+$Room=new DB('rooms');
 
 
 if(!isset($_SESSION['view'])){

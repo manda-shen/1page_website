@@ -1,27 +1,17 @@
 <?php include_once "api/db.php";?>
-
-<div class="di"
-    style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
+<div class="col-sm-12 col-xl-12">
     <!--正中央-->
-    <table width="100%">
-        <tbody>
-            <tr>
-                <td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;" class="cent"><a
-                        href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a></td>
-                <td><button onclick="document.cookie='user=';location.replace('?')"
-                        style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-        <p class="t cent botli">網站標題管理</p>
+
+    <div class="bg-light rounded h-100 p-4 col-sm-12 col-xl-8">
+        <p class="blockquote" style="text-align:center;">Logo管理</p>
+        <hr>
         <form method="post" target="back" action="./api/edit.php">
             <table width="100%">
                 <tbody>
-                    <tr class="yel">
-                        <td width="45%">logo圖</td>
-                        <td width="7%">顯示</td>
-                        <td width="7%">刪除</td>
+                    <tr class="bg-white rounded">
+                        <td class="bg-white rounded">logo圖</td>
+                        <td >顯示</td>
+                        <td >刪除</td>
                         <td></td>
                     </tr>
                     <?php
@@ -29,14 +19,14 @@
                     foreach($rows as $row){
                     ?>
                     <tr>
-                        <td width="45%"><img src="./upload/<?=$row['img']; ?>" style="width:100px;height:100px"></td>
+                        <td width="45%"><img src="./upload/<?=$row['img']; ?>" class="m-10" style="width:100px;height:100px"></td>
                         <td width="7%">
-                            <input type="radio" name="sh" value="<?=$row['id']; ?>" <?=($row['sh']==1)?'checked':''; ?>>
+                            <input type="radio" class="form-check-input" name="sh" value="<?=$row['id']; ?>" <?=($row['sh']==1)?'checked':''; ?>>
                         </td>
                         <td width="7%">
-                            <input type="checkbox" name="del[]" value="<?=$row['id']; ?>"></td>
-                        <td>
-                            <input type="button" onclick="op('#cover','#cvr','./modal/update_<?=$do;?>.php?id=<?=$row['id']; ?>&table=<?=$do;?>')" value="更新圖片">
+                            <input type="checkbox" class="form-check-input" name="del[]" value="<?=$row['id']; ?>"></td>
+                        <td class="text-end">
+                            <input type="button" class="btn btn-primary rounded-pill" onclick="op('#cover','#cvr','./modal/update_<?=$do;?>.php?id=<?=$row['id']; ?>&table=<?=$do;?>')" value="更新圖片">
                         </td>
                         <input type="hidden" name="id[]" value="<?=$row['id']; ?>">
                     </tr>
@@ -45,23 +35,24 @@
                     ?>
                 </tbody>
             </table>
-            <table style="margin-top:40px; width:70%;">
+            <table style="margin-top:40px; width:100%;">
                 <tbody>
                     <tr>
                         <td width="200px">
-                            <input type="button"
+                            <input type="button" class="btn btn-primary rounded-pill"
                                 onclick="op('#cover','#cvr','./modal/<?=$do;?>.php?table=<?=$do;?>')"
                                 value="新增logo圖片">
                         </td>
-                        <td class="cent">
+                        <td class="end text-end">
                             <input type="hidden" name="table" value="<?=$do;?>">
-                            <input type="submit" value="修改確定">
-                            <input type="reset" value="重置">
+                            <input type="submit" class="btn btn-secondary rounded-pill" value="修改確定">
+                            <input type="reset" class="btn btn-secondary rounded-pill" value="重置">
                         </td>
                     </tr>
                 </tbody>
             </table>
 
         </form>
+        
     </div>
 </div>
