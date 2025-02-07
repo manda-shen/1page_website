@@ -17,4 +17,6 @@ if(isset($_POST['pw2'])){
 
 $$db->save($_POST);
 
+// dd($_POST);
+
 to("../admin_new.php?do=$table");

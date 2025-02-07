@@ -5,53 +5,41 @@ $do = $_GET['do'] ?? 'home';
 ?>
 
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>天空小品 - 後台管理</title>
-    
-    <!-- Bootstrap 5 Stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style_backend.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-        <!-- Favicon -->
+    <meta charset="utf-8">
+    <title>DASHMIN - Bootstrap Admin Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
     <link href="css/style_backend.css" rel="stylesheet">
-    <!-- <link href="css/css.css" rel="stylesheet"> -->
-    <script src="./js/jquery-1.9.1.min.js"></script>
-    <script src="./js/js.js"></script>
-    <script src="./js/main_backend.js"></script>
-
-
-    <style>
-
-
-
-
-    </style>
 </head>
+
 <body>
 
-
-    <div id="cover" style="display:none; ">
+<div id="cover" style="display:none; ">
         <div id="coverr">
             
             <div id="cvr" class="modal">
@@ -59,12 +47,33 @@ $do = $_GET['do'] ?? 'home';
             </div>
         </div>
     </div>
-    <div class="wrapper">
-        <div class="d-flex flex-grow-1">
-            <!-- Sidebar -->
-            <nav class="bg-info bg-gradient p-4 sidebar" style="width: 250px; --bs-bg-opacity: .15;">
-                <h2 class="h5">後台管理</h2>
-                <ul class="nav flex-column">
+    <div class="container-fluid position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- 彈出視窗 -->
+        <div id="cover" style="display:none; ">
+            <div id="coverr">
+                <div id="cvr" class="modal">
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary">後臺管理</h3>
+                </a>
+                <div class="navbar-nav w-100">
                     <li class="nav-item"><a href="?do=logo" class="nav-link text-muted"><i class="bi bi-house"></i> Logo 管理</a></li>
                     <li class="nav-item"><a href="?do=list" class="nav-link text-muted"><i class="bi bi-list"></i> 導覽選單管理</a></li>
                     <li class="nav-item"><a href="?do=admin" class="nav-link text-muted"><i class="bi bi-people"></i> 會員帳號管理</a></li>
@@ -76,26 +85,34 @@ $do = $_GET['do'] ?? 'home';
                     <li class="nav-item"><a href="?do=comment" class="nav-link text-muted"><i class="bi bi-star"></i> 好評管理</a></li>
                     <li class="nav-item"><a href="?do=map" class="nav-link text-muted"><i class="bi bi-geo-alt"></i> 地圖管理</a></li>
                     <li class="nav-item"><a href="?do=footer" class="nav-link text-muted"><i class="bi bi-file-earmark"></i> 頁尾管理</a></li>
-                </ul>
+
+                </div>
             </nav>
+        </div>
+        <!-- Sidebar End -->
 
 
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="navbar-nav align-items-center ms-auto">
+                <button class="btn btn-outline-primary w-100 m-2" onclick="document.cookie='user=';location.replace('?')">管理登出</button>
+                </div>
+            </nav>
+            <!-- Navbar End -->
 
-            <!-- Main Content -->
-            <main class="flex-grow-1 p-4 bg-body content">
-                
-            <table width="100%">
-        <tbody>
-            <tr>
-                <td class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0"><a
-                        href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a></td>
-                <td><button onclick="document.cookie='user=';location.replace('?')"
-                        style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
-            </tr>
-        </tbody>
-    </table>
-                <div class="container">
-                    <?php if ($do === 'home'): ?>
+
+            <!-- Form Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                <?php if ($do === 'home'): ?>
                         <h1 class="h4">後台主頁</h1>
                         <p class="text-muted">選擇左側選單進入管理頁面。</p>
                         <div class="card">
@@ -119,17 +136,45 @@ $do = $_GET['do'] ?? 'home';
 
                     <?php endif; ?>
                 </div>
-            </main>
+            </div>
+            <!-- Form End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Manda</a>, All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
         </div>
-        
-        <footer class="bg-light text-muted py-3 text-center mt-auto">
-            <small>
-                <br>copyright &copy; <span class="text-warning">Manda Studio</span>. all rights reserved
-            </small>
-        </footer>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-    
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main_backend.js"></script>
+    <script src="js/js.js"></script>
 </body>
+
 </html>

@@ -67,6 +67,7 @@ class DB{
             //insert
             $cols=array_keys($array);
             $sql="INSERT INTO $this->table (`".join("`,`",$cols)."`) VALUES('".join("','",$array)."')";
+            echo $sql;
         }
         
         //echo $sql;

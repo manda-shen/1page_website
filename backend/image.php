@@ -3,7 +3,7 @@
     <!--正中央-->
 
     <div class="bg-light rounded h-100 p-4 col-sm-12 col-xl-10">
-        <p class="blockquote" style="text-align:center;">校園映像資料管理</p>
+        <p class="blockquote" style="text-align:center;">輪播圖管理</p>
         <hr>
         <form method="post" target="back" action="./api/edit.php">
             <table width="100%">
