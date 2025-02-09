@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2025-02-09 19:40:17
+-- 產生時間： 2025-02-09 23:57:34
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `about` (
 
 INSERT INTO `about` (`id`, `text`, `sh`) VALUES
 (1, '天空小品休閒農場 · 晨曦能量谷\r\n為「參與式農場」位於新北市淡水區-滬尾休閒農業區，\r\n其農產品採自然農法種植，吸收日月精華之健康農產品為主軸。 \r\n\r\n本農場為三個姊妺與三個先生同心經營，主張「3+3」經營理念，\r\n第一個「3」為：共耕、共饗、共好；\r\n第二個「3」為：生產、生活、生態。 \r\n\r\n希望來到本農場活動和一起生活的人們皆能感受到三生有幸般地幸福洋溢。', 1),
-(2, 'about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me about me ', 0),
+(2, 'about me about me about me about me about me about me about me \r\nabout me about me about me about me about me about me about me \r\nabout me about me about me about me about me about me about me \r\nabout me about me about me ', 0),
 (7, 'about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / ', 1);
 
 -- --------------------------------------------------------
@@ -99,10 +99,10 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `img`, `text`, `text2`, `sh`) VALUES
-(1, '01.jpg', '', '', 1),
-(2, '05.webp', '', '', 1),
-(4, '06.webp', '', '', 1),
-(5, '04_1.jpg', '', '', 1);
+(1, '01.jpg', '共耕 共饗 共好', 'Farming. Eating. Enjoying.', 1),
+(2, '05.webp', '共耕', '體驗農耕樂趣', 1),
+(4, '06.webp', '共饗', '享受現採有機耕作食材烹飪美食', 1),
+(5, '04_1.jpg', '共好', '共享遠離都市的美好時光', 1);
 
 -- --------------------------------------------------------
 
@@ -159,7 +159,6 @@ INSERT INTO `logo` (`id`, `img`, `text`, `sh`) VALUES
 CREATE TABLE `map` (
   `id` int(10) UNSIGNED NOT NULL,
   `img` text NOT NULL,
-  `text` text NOT NULL,
   `sh` int(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -167,8 +166,8 @@ CREATE TABLE `map` (
 -- 傾印資料表的資料 `map`
 --
 
-INSERT INTO `map` (`id`, `img`, `text`, `sh`) VALUES
-(1, 'farm-map.jpg', '', 0);
+INSERT INTO `map` (`id`, `img`, `sh`) VALUES
+(1, 'farm-map.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -218,7 +217,7 @@ CREATE TABLE `services` (
 INSERT INTO `services` (`id`, `icon_class`, `text`, `text2`, `sh`) VALUES
 (1, 'fa fa-hotel', 'Rooms & Appartment', 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.', 1),
 (5, 'fa fa-utensils', 'Food & Restaurant', 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.', 1),
-(6, 'fa fa-flower', 'Farming & planting', 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.', 1),
+(6, 'fa fa-seedling', 'Farming & planting', 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.', 1),
 (7, 'fa fa-parking', 'Parking', '', 0);
 
 -- --------------------------------------------------------
