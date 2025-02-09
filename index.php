@@ -1,6 +1,5 @@
 <?php include_once "api/db.php";
-
-$do = $_GET['do'] ?? 'home';
+// $do = $_GET['do'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,12 +40,21 @@ $do = $_GET['do'] ?? 'home';
 
 <body>
     <div class="row bg-white p-0">
+        
+        <!-- 彈出視窗 -->
+        <div id="cover" style="display:none; ">
+            <div id="coverr">
+                <div id="cvr" class="modal">
+                    
+                </div>
+            </div>
+        </div>
 
         <!-- Header Start -->
         <div class="container-fluid sticky-top">
             <div class="nav-logo">
                 <a class="navbar-brand" href="#">
-                    <img src="./img/theskyland_sw.png" alt="">
+                <img src="./upload/<?=$Logo->find(['sh'=>1])['img'];?>" alt="">
                 </a>
             </div>
             <nav class="navbar navbar-expand-sm navbar-dark text-hover">
@@ -56,79 +64,107 @@ $do = $_GET['do'] ?? 'home';
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="mynavbar">
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item"><a class="nav-link" href="#about_us">About Us</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#room">夜宿</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#farming">共耕</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#map">導覽</a></li>
-                        </ul>
+                    <ul class="navbar-nav me-auto">
+                        <?php 
+                        // 使用 $List 取代 $Menu
+                        $mains = $List->all(['sh'=>1]);  // 移除 main_id 條件，因為目前不需要子選單
+                        foreach($mains as $main){
+                        ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?=$main['href']?>">
+                                    <?=$main['text']?>
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
                     </div>
                     <div class="navbar-nav align-items-center ms-auto">
-                <button class="btn btn-outline-light text-light w-100 m-2" onclick="op('#cover','#cvr','./modal/<?=$do;?>.php?table=<?=$do;?>')">會員登入</button>
+                    <?php 
+                    if(empty($_SESSION['login'])){
+                    ?>
+                        <button class="btn btn-outline-light text-light w-100 m-2" onclick="op('#cover','#cvr','./modal/login.php')">管理登入</button>
+                    <?php
+                    } else {
+                    ?>
+                        <button class="btn btn-outline-light text-light w-100 m-2">
+                            <a href="admin.php" class="text-light">返回管理</a>
+                        </button>
+                        <button class="btn btn-outline-light text-light w-100 m-2">
+                            <a href="./api/logout.php" class="text-light">管理登出</a>
+                        </button>
+                    <?php 
+                    }
+                    ?>                
                 </div>
                 </div>
             </nav>
         </div>
+
+        <?php if(isset($_GET['login'])): ?>
+        <script>
+        $(document).ready(function(){
+            // 自動開啟登入 modal
+            $('#cover').show();
+            // 載入登入表單
+            $('#cvr').load("modal/login.php");
+        });
+        </script>
+        <?php endif; ?>
         <!-- Header End -->
 
-                <!-- 彈出視窗 -->
-                <div id="cover" style="display:none; ">
-            <div id="coverr">
-                <div id="cvr" class="modal">
-                    
-                </div>
-            </div>
+
+
+    <!-- Carousel Start -->
+    <?php
+    $images = $Image->all(['sh' => 1]);  // 取得所有啟用的輪播圖
+    $count = count($images);  // 計算輪播圖數量
+    ?>
+    <section id="lokiSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2500">
+        <!-- 輪播指示器 -->
+        <div class="carousel-indicators">
+        <?php
+        for($i = 0; $i < $count; $i++){
+        ?>
+            <button type="button" 
+                    data-bs-target="#lokiSlider" 
+                    data-bs-slide-to="<?=$i;?>" 
+                    class="<?=($i==0)?'active':'';?>">
+            </button>
+        <?php
+        }
+        ?>
         </div>
 
+        <!-- 輪播內容 -->
+        <div class="carousel-inner">
+            <?php
+            $first = true;
+            foreach($images as $image){
+            ?>
+                <div class="carousel-item vh-100 <?=$first?'active':'';?>">
+                    <img src="./upload/<?=$image['img'];?>" class="b-block w-100 h-100">
+                    <div class="carousel-caption top-0 bottom-0 d-flex flex-column justify-content-center">
+                        <h1><?=$image['text'];?></h1>
+                        <p class="d-none d-md-block"><?=$image['text2'];?></p>
+                    </div>
+                </div>
+            <?php
+                $first = false;
+            }
+            ?>
+        </div>
 
-        <!-- Carousel Start -->
-        <section id="lokiSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2500">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#lokiSlider" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#lokiSlider" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#lokiSlider" data-bs-slide-to="2"></button>
-                <button type="button" data-bs-target="#lokiSlider" data-bs-slide-to="3"></button>
-            </div>
-
-            <div class="carousel-inner">
-                <div class="carousel-item vh-100 active">
-                    <img src="./img/01.jpg" class="b-block w-100 h-100">
-                    <div class="carousel-caption top-0 bottom-0 d-flex flex-column justify-content-center">
-                        <h1>共耕 共饗 共好</h1>
-                        <p class="d-none d-md-block">Farming. Eating. Enjoying.</p>
-                    </div>
-                </div>
-                <div class="carousel-item vh-100">
-                    <img src="./img/05.webp" class="b-block w-100 h-100">
-                    <div class="carousel-caption top-0 bottom-0 d-flex flex-column justify-content-center">
-                        <h1>共耕</h1>
-                        <p class="d-none d-md-block">體驗農耕樂趣</p>
-                    </div>
-                </div>
-                <div class="carousel-item vh-100">
-                    <img src="./img/06.webp" class="b-block w-100 h-100">
-                    <div class="carousel-caption top-0 bottom-0 d-flex flex-column justify-content-center">
-                        <h1>共饗</h1>
-                        <p class="d-none d-md-block">享受現採有機耕作食材烹飪美食</p>
-                    </div>
-                </div>
-                <div class="carousel-item vh-100">
-                    <img src="./img/04_1.jpg" class="b-block w-100 h-100">
-                    <div class="carousel-caption top-0 bottom-0 d-flex flex-column justify-content-center">
-                        <h1>共好</h1>
-                        <p class="d-none d-md-block">共享遠離都市的美好時光</p>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#lokiSlider" data-bs-slide="prev">
-                <i class="fas fa-angle-double-left fa-2x"></i>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#lokiSlider" data-bs-slide="next">
-                <i class="fas fa-angle-double-right fa-2x"></i>
-            </button>
-        </section>
+        <!-- 輪播控制按鈕 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#lokiSlider" data-bs-slide="prev">
+            <i class="fas fa-angle-double-left fa-2x"></i>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#lokiSlider" data-bs-slide="next">
+            <i class="fas fa-angle-double-right fa-2x"></i>
+        </button>
+    </section>
         <!-- Carousel End -->
-
 
 
         <!-- About Start -->
@@ -138,16 +174,7 @@ $do = $_GET['do'] ?? 'home';
                     <div class="col-lg-6">
                         <h6 class="section-title text-start text-primary text-uppercase">About Us</h6>
                         <h1 class="mb-4">Welcome to <span class="text-primary text-uppercase">天空小品</span></h1>
-                        <pre class="mb-4">
-天空小品休閒農場 · 晨曦能量谷
-為「參與式農場」位於新北市淡水區-滬尾休閒農業區，
-其農產品採自然農法種植，吸收日月精華之健康農產品為主軸。 
-
-本農場為三個姊妺與三個先生同心經營，主張「3+3」經營理念，
-第一個「3」為：共耕、共饗、共好；
-第二個「3」為：生產、生活、生態。 
-
-希望來到本農場活動和一起生活的人們皆能感受到三生有幸般地幸福洋溢。</pre>
+                        <pre class="mb-4"><?=$About->find(['sh'=>1])['text'];?></pre>
                         <div class="row g-3 pb-4">
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="border rounded p-1">
@@ -203,170 +230,86 @@ $do = $_GET['do'] ?? 'home';
 
 
         <!-- Room Start -->
-        <div id="room" class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
-                    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="room-item shadow rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/hotel-room_01.webp" alt="">
-                                <small
-                                    class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">NT$
-                                    4,600/Night</small>
-                            </div>
-                            <div class="p-4 mt-2">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">清嵐</h5>
-                                    <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-3">
-                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>1
-                                        Bed</small>
-                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2
-                                        people</small>
-                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
-                                </div>
-                                <p class="text-body mb-3">客房特色，五感體驗情境內容：視覺、聽覺、味覺、嗅覺、觸覺，帶入具體的美好想像</p>
-                                <div class="d-flex justify-content-between">
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="room-item shadow rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/hotel-room_02.webp" alt="">
-                                <small
-                                    class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">NT$
-                                    5,800/Night</small>
-                            </div>
-                            <div class="p-4 mt-2">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">沐陽／棲霞</h5>
-                                    <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-3">
-                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>1
-                                        Bed</small>
-                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2
-                                        people</small>
-                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
-                                </div>
-                                <p class="text-body mb-3">客房特色，五感體驗情境內容：視覺、聽覺、味覺、嗅覺、觸覺，帶入具體的美好想像。</p>
-                                <div class="d-flex justify-content-between">
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="room-item shadow rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/hotel-room_03.webp" alt="">
-                                <small
-                                    class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">NT$
-                                    8,200/Night</small>
-                            </div>
-                            <div class="p-4 mt-2">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">沐月</h5>
-                                    <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-3">
-                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>2
-                                        Bed</small>
-                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>4
-                                        people</small>
-                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
-                                </div>
-                                <p class="text-body mb-3">客房特色，五感體驗情境內容：視覺、聽覺、味覺、嗅覺、觸覺，帶入具體的美好想像。</p>
-                                <div class="d-flex justify-content-between">
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="room-item shadow rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/hotel-room_04.webp" alt="">
-                                <small
-                                    class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">NT$
-                                    8,800/Night</small>
-                            </div>
-                            <div class="p-4 mt-2">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">翔雲</h5>
-                                    <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-3">
-                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>2
-                                        Bed</small>
-                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>4
-                                        people</small>
-                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
-                                </div>
-                                <p class="text-body mb-3">客房特色，五感體驗情境內容：視覺、聽覺、味覺、嗅覺、觸覺，帶入具體的美好想像。</p>
-                                <div class="d-flex justify-content-between">
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div id="room" class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
+            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
         </div>
+        <div class="row g-4">
+            <?php
+            $rooms = $Room->all(['sh' => 1]);  // 取得所有啟用的房間資料
+            $delay = 0.1;  // 初始動畫延遲
+            foreach($rooms as $room){
+            ?>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="<?=$delay;?>s">
+                    <div class="room-item shadow rounded overflow-hidden">
+                        <div class="position-relative">
+                            <img class="img-fluid" src="./upload/<?=$room['img'];?>" alt="<?=$room['text'];?>">
+                            <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">
+                                NT$ <?=$room['price'];?>/Night
+                            </small>
+                        </div>
+                        <div class="p-4 mt-2">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="mb-0"><?=$room['text'];?></h5>
+                                <div class="ps-2">
+                                    <?php
+                                    // 顯示五顆星星
+                                    for($i=0; $i<5; $i++){
+                                        echo '<small class="fa fa-star text-primary"></small>';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <small class="border-end me-3 pe-3">
+                                    <i class="fa fa-bed text-primary me-2"></i><?=$room['beds'];?> Bed
+                                </small>
+                                <small class="border-end me-3 pe-3">
+                                    <i class="fa fa-bath text-primary me-2"></i><?=$room['people'];?> people
+                                </small>
+                                <small>
+                                    <i class="fa fa-wifi text-primary me-2"></i>Wifi
+                                </small>
+                            </div>
+                            <p class="text-body mb-3"><?=$room['info'];?></p>
+                            <div class="d-flex justify-content-between">
+                                <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
+                                <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+                $delay += 0.2;  // 每個房間增加延遲時間
+            }
+            ?>
+        </div>
+    </div>
+</div>
         <!-- Room End -->
 
 
-        <!-- Video Start -->
+        <?php
+// 取得啟用的影片資料（只取一筆）
+$video = $Vedio->find(['sh' => 1]);  // 注意：資料表名稱是 Vedio
+?>
 
+<!-- Video Start -->
 <div id="farming" class="container-xxl py-5 px-0 wow zoomIn" data-wow-delay="0.1s">
     <div class="row g-0">
         <div class="col-md-6 bg-light d-flex align-items-center">
             <div class="p-5">
-                <h6 class="section-title text-start text-white text-uppercase mb-3">採天然農法</h6>
-                <h1 class="text-white mb-4">Health Lifestyle</h1>
-                <p class="text-white mb-4">無化肥、無農藥，就是要吃的健康</p>
+                <h6 class="section-title text-start text-white text-uppercase mb-3"><?=$video['text'];?></h6>
+                <h1 class="text-white mb-4"><?=$video['text2'];?></h1>
+                <p class="text-white mb-4"><?=$video['text3'];?></p>
             </div>
         </div>
         <div class="col-md-6">
             <div class="video">
                 <button type="button" class="btn-play" data-bs-toggle="modal"
-                    data-src="https://youtu.be/Ncab1fB5Xkk?si=Po_2bpt3fZzLu1n1" data-bs-target="#videoModal">
+                    data-src="<?=$video['href'];?>" data-bs-target="#videoModal">
                     <span></span>
                 </button>
             </div>
@@ -392,60 +335,40 @@ $do = $_GET['do'] ?? 'home';
         </div>
     </div>
 </div>
-
-        <!-- Video Start -->
+<!-- Video End -->
 
 
         <!-- Service Start -->
         <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase">Our Services</h6>
-                    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div
-                                    class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-hotel fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Rooms & Appartment</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem
-                                sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div
-                                    class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-utensils fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Food & Restaurant</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem
-                                sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div
-                                    class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-spa fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Farming & planting</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem
-                                sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Our Services</h6>
+            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
         </div>
+        <div class="row g-4">
+            <?php
+            $services = $Service->all(['sh' => 1]);
+            $delay = 0.1;  // 初始動畫延遲
+            foreach($services as $service){
+            ?>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="<?=$delay;?>s">
+                    <a class="service-item rounded" href="">
+                        <div class="service-icon bg-transparent border rounded p-1">
+                            <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                <i class="<?=$service['icon_class'];?> fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h5 class="mb-3"><?=$service['text'];?></h5>
+                        <p class="text-body mb-0"><?=$service['text2'];?></p>
+                    </a>
+                </div>
+            <?php
+                $delay += 0.1;  // 每個服務增加延遲時間
+            }
+            ?>
+        </div>
+    </div>
+</div>
         <!-- Service End -->
 
 
@@ -498,14 +421,15 @@ $do = $_GET['do'] ?? 'home';
         <!-- Testimonial End -->
 
 
-        <!-- Team Start -->
+        <!-- Map Start -->
         <div id="map" class="container-xxl py-5">
             <div class="container">
                 <div class="row">
                     <div class=" wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded shadow overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="img/farm-map.jpg" alt="">
+                            <?php $map=$Map->find(['sh'=>1]); ?>
+                            <img class="img-fluid" src="./upload/<?=$map['img']??'no-image.jpg';?>" alt="農場地圖">
                                 <div
                                     class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                                 </div>
@@ -519,7 +443,7 @@ $do = $_GET['do'] ?? 'home';
                 </div>
             </div>
         </div>
-        <!-- Team End -->
+        <!-- Map End -->
 
 
 

@@ -22,7 +22,7 @@ textarea{
     <div class="bg-light rounded h-100 p-4 col-sm-12 col-xl-10">
         <p class="blockquote" style="text-align:center;">客房圖文管理</p>
         <hr>
-        <form method="post" target="back" action="./api/edit.php">
+        <form method="post" action="./api/edit.php">
             <table width="100%">
                 <tbody>
                 <tr class="bg-white rounded">

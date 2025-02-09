@@ -113,6 +113,8 @@ class DB{
         return $this->avg('avg',$col,$where);
     }
     function count($where=[]){
+        $result = $this->math('count','*',$where);
+        error_log("SQL Count Result: " . print_r($result, true));  // 記錄到錯誤日誌
         return $this->math('count','*',$where);
     }
 
@@ -139,15 +141,17 @@ class DB{
      protected function math($math,$col='id',$where=[]){
         $sql="SELECT $math($col) FROM $this->table";
 
-        if(!empty($where)){
-            $tmp=$this->a2s($where);
-            $sql=$sql . " WHERE " . join(" && ", $tmp);
+        if (!empty($where) && is_array($where)) {
+            $tmp = $this->a2s($where);
+            $sql .= " WHERE " . join(" AND ", $tmp);
         }
-
+        
+        error_log("Generated SQL: " . $sql);  // 記錄生成的 SQL 語句
         return $this->pdo->query($sql)->fetchColumn();
     }
 
 }
+
 
 function q($sql){
     return $this->pdo->query($sql)->fetchAll();

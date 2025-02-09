@@ -1,42 +1,44 @@
-<?php include_once "api/db.php";?>
-
-<form>
-    <input type="text" placeholder="帳號">
-    <input type="password" placeholder="密碼">
-    <button type="submit">登入</button>
-</form>
-
-<div id="main">
-        <div id="top">
-            <div style="padding:10px;display:inline-block;vertical-align:top;">
-                <?php 
-                if(empty($_SESSION['Mem'])){
-                ?>
-                <a href="?do=login">會員登入</a> |
-                <?php
-                }else{
-                    ?>
-                <a href="./api/logout.php?table=Mem">登出</a> |
-                <?php 
-                    }
-                ?>
-                <?php 
-                if(empty($_SESSION['Admin'])){
-                ?>
-                <a href="?do=admin">管理登入</a> |
-                <?php
-                }else{
-                    ?>
-                <a href="back.php">返回管理</a> |
-                <?php 
-                    }
-                ?>
-            </div>
-
-           
-    </div>
-</div>
-
-
+<h2 class='ct'>管理者登入</h2>
+<table class="all">
+    <tr>
+        <td>帳號</td>
+        <td><input type="text" name="acc" id="acc"></td>
+    </tr>
+    <tr>
+        <td>密碼</td>
+        <td><input type="password" name="pw" id="pw"></td>
+    </tr>
+</table>
+<div class="ct"><button id="loginBtn">確認</button></div>
 <a style="position:absolute; right:8px; top:8px; cursor:pointer; z-index:9999;"
-onclick="cl('#cover')">X</a>
+            onclick="cl('#cover')">X</a>
+            <script>
+$(document).ready(function(){
+    $("#loginBtn").on("click", function(){
+        let acc = $("#acc").val();
+        let pw = $("#pw").val();
+
+        if(acc === "" || pw === ""){
+            alert("請輸入帳號和密碼");
+            return;
+        }
+
+        $.get("./api/chk_acc.php", { acc: acc, table: "admin" })
+         .done(function(res){
+            if (parseInt(res) > 0) {
+                $.get("./api/chk_pw.php", { acc: acc, pw: pw, table: "admin" })
+                 .done(function(res){
+                    if(parseInt(res) > 0){
+                        // 登入成功，直接轉向 admin.php
+                        location.href = 'admin.php';
+                    } else {
+                        alert("帳號或密碼錯誤");
+                    }
+                });
+            } else {
+                alert("此帳號不存在");
+            }
+        });
+    });
+});
+</script>

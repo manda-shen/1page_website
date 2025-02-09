@@ -29,6 +29,12 @@ if(isset($_POST['id'])){
                     $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
                     break;
 
+                case "image":
+                    $row['text']=$_POST['text'][$idx];
+                    $row['text2']=$_POST['text2'][$idx];
+                    $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
+                    break;
+
                 case "room":
                     $row['text']=$_POST['text'][$idx];
                     $row['price']=$_POST['price'][$idx];
@@ -64,8 +70,6 @@ if(isset($_POST['id'])){
                 $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
                 if(isset($_POST['text'])){
                     $row['text']=$_POST['text'][$idx];
-                }elseif(isset($_POST['text2'])){
-                    $row['text2']=$_POST['text2'][$idx];
                 }
             }
             $$db->save($row);
@@ -73,5 +77,5 @@ if(isset($_POST['id'])){
     }
 }
 
-to("../admin_new.php?do=$table");
+to("../admin.php?do=$table");
 ?>

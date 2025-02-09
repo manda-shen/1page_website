@@ -19,4 +19,4 @@ $$db->save($_POST);
 
 // dd($_POST);
 
-to("../admin_new.php?do=$table");
+to("../admin.php?do=$table");

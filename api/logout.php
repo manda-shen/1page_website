@@ -1,4 +1,8 @@
-<?php include_once "db.php";
-$table=$_GET['table'];
-unset($_SESSION[$table]);
+<?php 
+include_once "db.php";
+unset($_SESSION['login']);
+
 to("../index.php");
+
+
+?>

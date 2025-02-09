@@ -22,7 +22,7 @@ textarea{
     <div class="bg-light rounded h-100 p-4 col-sm-12 col-xl-10">
         <p class="blockquote" style="text-align:center;">服務項目</p>
         <hr>
-        <form method="post" target="back" action="./api/edit.php">
+        <form method="post" action="./api/edit.php">
             <table width="100%">
                 <tbody>
                 <tr class="bg-white rounded">
@@ -57,7 +57,6 @@ textarea{
                             "fa fa-shopping-cart" => "🛒 購物車",
                             "fa fa-seedling" => "🌱 幼苗",
                             "fa fa-tree" => "🌳 樹木",
-                            "fa fa-flower" => "🌷 花",
                             "fa fa-sun" => "🌻 向日葵",
                             "fa fa-house-user" => "🏡 庭院",
                             "fa fa-tractor" => "🏡 農場、園藝機械",

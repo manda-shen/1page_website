@@ -25,7 +25,6 @@
                     "fa fa-shopping-cart" => "🛒 購物車",
                     "fa fa-seedling" => "🌱 幼苗",
                     "fa fa-tree" => "🌳 樹木",
-                    "fa fa-flower" => "🌷 花",
                     "fa fa-sun" => "🌻 向日葵",
                     "fa fa-house-user" => "🏡 庭院",
                     "fa fa-tractor" => "🏡 農場、園藝機械",

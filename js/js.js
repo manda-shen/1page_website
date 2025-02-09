@@ -15,13 +15,19 @@ function lo(x) {
 	location.replace(x)
 }
 function op(x, y, url) {
-	// console.log('op');
-
-	$(x).fadeIn()
-	if (y)
-		$(y).fadeIn()
-	if (y && url)
-		$(y).load(url)
+    console.log("開啟視窗:", x, y, url); // 🔍 偵錯用
+    $(x).fadeIn();
+    if (y) $(y).fadeIn();
+    if (y && url) {
+        $(y).load(url, function(response, status, xhr) {
+            if (status == "error") {
+                console.error("載入失敗:", xhr.status, xhr.statusText);
+            } else {
+                console.log("載入成功:", url);
+                console.log("回應內容:", response);
+            }
+        });
+    }
 }
 function cl(x) {
 	$(x).fadeOut();

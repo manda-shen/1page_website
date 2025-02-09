@@ -1,5 +1,14 @@
 <?php
 include_once "./api/db.php";
+
+if(!isset($_SESSION['login'])){
+    echo "<script>
+            alert('請先登入');
+            location.href='index.php?login=1';
+          </script>";
+    exit();
+}
+
 // 確保 $do 變數獲取 GET 參數，未設置時預設為 'home'
 $do = $_GET['do'] ?? 'home';
 ?>
