@@ -16,6 +16,7 @@
                         <td width="10%">刪除</td>
                         <td></td>
                     </tr>
+                    <tr height="10px"></tr>
                     <?php
                     $rows=$List->all(['main_id'=>0]);
                     foreach($rows as $row){

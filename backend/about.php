@@ -13,6 +13,7 @@
                         <td width="10%">顯示</td>
                         <td width="10%">刪除</td>
                     </tr>
+                    <tr height="10px"></tr>
                     <?php 
 
                     $div=2;

@@ -164,15 +164,15 @@ function to($url){
 }
 
 $Logo=new DB('logo');
-$Ad=new DB('ads');
 $Image=new DB('images');
-$Mvim=new DB('mvims');
+$Vedio=new DB('vedio');
 $About=new DB('about');
 $Admin=new DB('admin');
 $List=new DB('lists');
-$Total=new DB('total');
 $Bottom=new DB('bottom');
 $Room=new DB('rooms');
+$Service=new DB('services');
+$Map=new DB('map');
 
 
 if(!isset($_SESSION['view'])){

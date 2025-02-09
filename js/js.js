@@ -26,3 +26,7 @@ function op(x, y, url) {
 function cl(x) {
 	$(x).fadeOut();
 }
+function updateIcon() {
+	let selectedIcon = document.getElementById("icon_class").value;
+	document.getElementById("iconPreview").className = selectedIcon;
+}

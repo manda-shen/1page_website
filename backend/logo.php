@@ -14,6 +14,7 @@
                         <td >刪除</td>
                         <td></td>
                     </tr>
+                    <tr height="10px"></tr>
                     <?php
                     $rows=$Logo->all();
                     foreach($rows as $row){

@@ -96,20 +96,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modal Video
     $(document).ready(function () {
-        var $videoSrc;
+        var $videoSrc = "";
+    
         $('.btn-play').click(function () {
             $videoSrc = $(this).data("src");
         });
-        console.log($videoSrc);
-
-        $('#videoModal').on('shown.bs.modal', function (e) {
-            $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
-        })
-
-        $('#videoModal').on('hide.bs.modal', function (e) {
-            $("#video").attr('src', $videoSrc);
-        })
+    
+        $('#videoModal').on('shown.bs.modal', function () {
+            if ($videoSrc) {
+                var embedUrl = $videoSrc.replace("youtu.be/", "www.youtube.com/embed/").split("?")[0];
+                $("#videoModal iframe").attr("src", embedUrl + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
+            }
+        });
+    
+        $('#videoModal').on('hide.bs.modal', function () {
+            $("#videoModal iframe").attr("src", ""); // 清除 src 停止播放
+        });
     });
+    
 
 
     // Testimonials carousel

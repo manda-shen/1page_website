@@ -3,9 +3,9 @@
 <form action="api/insert.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>輪播圖片：</td>
+            <td>輪播圖片</td>
             <td>文字標題</td>
-            <td>文字標題</td>
+            <td>文字說明</td>
         </tr>
         <tr>
             <td><input type="file" name="img" id="img"></td>
@@ -15,8 +15,8 @@
     </table>
     <div class="cent">
     <input type="hidden" name="table" value="<?=$_GET['table'];?>">
-        <input type="submit" value="新增">
-        <input type="reset" value="重置">
+        <input type="submit" class="btn btn-secondary rounded-pill" value="新增">
+        <input type="reset" class="btn btn-secondary rounded-pill" value="重置">
     </div>
 </form>
 <a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;"
