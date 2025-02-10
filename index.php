@@ -44,7 +44,7 @@
         <!-- 彈出視窗 -->
         <div id="cover" style="display:none; ">
             <div id="coverr">
-                <div id="cvr" class="modal">
+                <div id="cvr" class="modal" style="width:30% !important; height:40%;">
                     
                 </div>
             </div>
@@ -121,7 +121,7 @@
     $images = $Image->all(['sh' => 1]);  // 取得所有啟用的輪播圖
     $count = count($images);  // 計算輪播圖數量
     ?>
-    <section id="lokiSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2500">
+    <section id="lokiSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2800">
         <!-- 輪播指示器 -->
         <div class="carousel-indicators">
         <?php

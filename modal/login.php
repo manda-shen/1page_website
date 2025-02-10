@@ -1,5 +1,6 @@
-<h2 class='ct'>管理者登入</h2>
-<table class="all">
+<h2 class='ct text-center' style="width:100%">管理者登入</h2>
+<hr>
+<table class="all text-center" style="witch:50% !important;">
     <tr>
         <td>帳號</td>
         <td><input type="text" name="acc" id="acc"></td>
@@ -9,7 +10,7 @@
         <td><input type="password" name="pw" id="pw"></td>
     </tr>
 </table>
-<div class="ct"><button id="loginBtn">確認</button></div>
+<div class="ct"><button class="btn btn-secondary rounded-pill" id="loginBtn">確認</button></div>
 <a style="position:absolute; right:8px; top:8px; cursor:pointer; z-index:9999;"
             onclick="cl('#cover')">X</a>
             <script>

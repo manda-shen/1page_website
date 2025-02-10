@@ -78,10 +78,12 @@ $do = $_GET['do'] ?? 'home';
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
-            <nav class="navbar bg-light navbar-light">
-                <a href="admin.php" class="navbar-brand mx-4 mb-3">
+            <nav class="navbar bg-light navbar-light " style="width:100%;">
+                <a href="admin.php" class="navbar-brand mx-4 mb-3 ">
                     <h3 class="text-primary">後臺管理</h3>
                 </a>
+                
+                
                 <div class="navbar-nav w-100">
                     <li class="nav-item"><a href="?do=logo" class="nav-link text-muted"><i class="bi bi-badge-tm"></i> Logo 管理</a></li>
                     <li class="nav-item"><a href="?do=list" class="nav-link text-muted"><i class="bi bi-list"></i> 導覽選單管理</a></li>
@@ -94,6 +96,7 @@ $do = $_GET['do'] ?? 'home';
                     <!-- <li class="nav-item"><a href="?do=comment" class="nav-link text-muted"><i class="bi bi-star"></i> 好評管理</a></li> -->
                     <li class="nav-item"><a href="?do=map" class="nav-link text-muted"><i class="bi bi-geo-alt"></i> 導覽圖管理</a></li>
                     <!-- <li class="nav-item"><a href="?do=footer" class="nav-link text-muted"><i class="bi bi-file-earmark"></i> 頁尾管理</a></li> -->
+                    <button class="btn btn-outline-primary w-100 m-2"><a href="index.php">首頁</a></button>
 
                 </div>
             </nav>
