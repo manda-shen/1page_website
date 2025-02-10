@@ -35,6 +35,13 @@ if(isset($_POST['id'])){
                     $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
                     break;
 
+                case "about":
+                    $row['title']=$_POST['title'];
+                    $row['title2']=$_POST['title2'];
+                    $row['title3']=$_POST['title3'];
+                    $row['text']=$_POST['text'];
+                    break;
+
                 case "room":
                     $row['text']=$_POST['text'][$idx];
                     $row['price']=$_POST['price'][$idx];
@@ -42,7 +49,7 @@ if(isset($_POST['id'])){
                     $row['people']=$_POST['people'][$idx];
                     $row['info']=$_POST['info'][$idx];
                     $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
-                    var_dump($_POST['info']);
+                    // var_dump($_POST['info']);
                     break;
 
                 case "vedio":
