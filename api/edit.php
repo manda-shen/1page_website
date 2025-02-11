@@ -7,6 +7,23 @@ $db=ucfirst($table);
 
 
 if(isset($_POST['id'])){
+    if($table == 'about'){
+        $id = $_POST['id'];  // 直接取得 id，不當作陣列處理
+        $row = $$db->find($id);
+        // 因為表單中使用陣列形式，所以要取第一個元素
+        $row['title'] = $_POST['title'][0];
+        $row['title2'] = $_POST['title2'][0];
+        $row['title3'] = $_POST['title3'][0];
+        $row['text'] = $_POST['text'];
+        $row['nb'] = $_POST['nb'][0];
+        $row['nb2'] = $_POST['nb2'][0];
+        $row['nb3'] = $_POST['nb3'][0];
+        
+        // 為了除錯
+        error_log("About to save: " . print_r($row, true));
+        
+        $$db->save($row);
+    } else {
     foreach($_POST['id'] as $idx => $id){
         if(isset($_POST['del']) && in_array($id,$_POST['del'])){
             $$db->del($id);
@@ -39,7 +56,7 @@ if(isset($_POST['id'])){
                     $row['title']=$_POST['title'];
                     $row['title2']=$_POST['title2'];
                     $row['title3']=$_POST['title3'];
-                    $row['text']=$_POST['text'];
+                    $row['text']=$_POST['text'];    
                     break;
 
                 case "room":
@@ -81,7 +98,7 @@ if(isset($_POST['id'])){
             }
             $$db->save($row);
         }
-    }
+    }}
 }
 
 to("../admin.php?do=$table");

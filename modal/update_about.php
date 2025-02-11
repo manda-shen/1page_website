@@ -4,13 +4,14 @@
     <table>
         <tr>
             <td>圖片</td>
-            <td>
+            <td style="display:flex; flex-direction:row;">
+                <div id="preview" style="width:250px; margin-right:15px;"></div>
                 <?php 
                 $imgNo = $_GET['img'] ?? '1';
                 $imgField = 'img' . ($imgNo == '1' ? '' : $imgNo);
                 ?>
                 <input type="file" name="<?=$imgField;?>" onchange="previewImage(this, 'preview')">
-                <div id="preview"></div>
+
             </td>
         </tr>
     </table>

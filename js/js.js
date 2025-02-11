@@ -47,8 +47,7 @@ function previewImage(input, previewId) {
 		reader.onload = function (e) {
 			const img = document.createElement('img');
 			img.src = e.target.result;
-			img.style.width = '100px';
-			img.style.height = '100px';
+			img.style.width = '250px';
 			preview.appendChild(img);
 		}
 

@@ -18,7 +18,7 @@ $do = $_GET['do'] ?? 'home';
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>天空小品-後台管理系統</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -48,9 +48,9 @@ $do = $_GET['do'] ?? 'home';
 
 <body>
 
-<div id="cover" style="display:none; ">
+    <div id="cover" style="display:none; ">
         <div id="coverr">
-            
+
             <div id="cvr" class="modal">
 
             </div>
@@ -70,7 +70,7 @@ $do = $_GET['do'] ?? 'home';
         <div id="cover" style="display:none; ">
             <div id="coverr">
                 <div id="cvr" class="modal">
-                    
+
                 </div>
             </div>
         </div>
@@ -82,19 +82,28 @@ $do = $_GET['do'] ?? 'home';
                 <a href="admin.php" class="navbar-brand mx-4 mb-3 ">
                     <h3 class="text-primary">後臺管理</h3>
                 </a>
-                
-                
+
+
                 <div class="navbar-nav w-100">
-                    <li class="nav-item"><a href="?do=logo" class="nav-link text-muted"><i class="bi bi-badge-tm"></i> Logo 管理</a></li>
-                    <li class="nav-item"><a href="?do=list" class="nav-link text-muted"><i class="bi bi-list"></i> 導覽選單管理</a></li>
-                    <li class="nav-item"><a href="?do=admin" class="nav-link text-muted"><i class="bi bi-people"></i> 會員帳號管理</a></li>
-                    <li class="nav-item"><a href="?do=image" class="nav-link text-muted"><i class="bi bi-images"></i> 輪播圖管理</a></li>
-                    <li class="nav-item"><a href="?do=about" class="nav-link text-muted"><i class="bi bi-file-text"></i> 關於我內容管理</a></li>
-                    <li class="nav-item"><a href="?do=room" class="nav-link text-muted"><i class="bi bi-building"></i> 客房圖文管理</a></li>
-                    <li class="nav-item"><a href="?do=vedio" class="nav-link text-muted"><i class="bi bi-camera-video"></i> 影片廣告管理</a></li>
-                    <li class="nav-item"><a href="?do=service" class="nav-link text-muted"><i class="bi bi-link-45deg"></i> 服務項目</a></li>
+                    <li class="nav-item"><a href="?do=logo" class="nav-link text-muted"><i class="bi bi-badge-tm"></i>
+                            Logo 管理</a></li>
+                    <li class="nav-item"><a href="?do=list" class="nav-link text-muted"><i class="bi bi-list"></i>
+                            導覽選單管理</a></li>
+                    <li class="nav-item"><a href="?do=admin" class="nav-link text-muted"><i class="bi bi-people"></i>
+                            會員帳號管理</a></li>
+                    <li class="nav-item"><a href="?do=image" class="nav-link text-muted"><i class="bi bi-images"></i>
+                            輪播圖管理</a></li>
+                    <li class="nav-item"><a href="?do=about" class="nav-link text-muted"><i class="bi bi-file-text"></i>
+                            關於我內容管理</a></li>
+                    <li class="nav-item"><a href="?do=room" class="nav-link text-muted"><i class="bi bi-building"></i>
+                            客房圖文管理</a></li>
+                    <li class="nav-item"><a href="?do=vedio" class="nav-link text-muted"><i
+                                class="bi bi-camera-video"></i> 影片廣告管理</a></li>
+                    <li class="nav-item"><a href="?do=service" class="nav-link text-muted"><i
+                                class="bi bi-link-45deg"></i> 服務項目</a></li>
                     <!-- <li class="nav-item"><a href="?do=comment" class="nav-link text-muted"><i class="bi bi-star"></i> 好評管理</a></li> -->
-                    <li class="nav-item"><a href="?do=map" class="nav-link text-muted"><i class="bi bi-geo-alt"></i> 導覽圖管理</a></li>
+                    <li class="nav-item"><a href="?do=map" class="nav-link text-muted"><i class="bi bi-geo-alt"></i>
+                            導覽圖管理</a></li>
                     <!-- <li class="nav-item"><a href="?do=footer" class="nav-link text-muted"><i class="bi bi-file-earmark"></i> 頁尾管理</a></li> -->
                     <button class="btn btn-outline-primary w-100 m-2"><a href="index.php">首頁</a></button>
 
@@ -115,7 +124,8 @@ $do = $_GET['do'] ?? 'home';
                     <i class="fa fa-bars"></i>
                 </a>
                 <div class="navbar-nav align-items-center ms-auto">
-                <button class="btn btn-outline-primary w-100 m-2"><a href="./api/logout.php?table=Admin">管理登出</a></button>
+                    <button class="btn btn-outline-primary w-100 m-2"><a
+                            href="./api/logout.php?table=Admin">管理登出</a></button>
                 </div>
             </nav>
             <!-- Navbar End -->
@@ -124,17 +134,17 @@ $do = $_GET['do'] ?? 'home';
             <!-- Form Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                <?php if ($do === 'home'): ?>
-                        <h1 class="h4">後台主頁</h1>
-                        <p class="text-muted">選擇左側選單進入管理頁面。</p>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">歡迎來到後台</h5>
-                                <p class="card-text">這裡是你的後台控制台，請選擇一個管理項目開始編輯。</p>
-                            </div>
+                    <?php if ($do === 'home'): ?>
+                    <h1 class="h4">後台主頁</h1>
+                    <p class="text-muted">選擇左側選單進入管理頁面。</p>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">歡迎來到後台</h5>
+                            <p class="card-text">這裡是你的後台控制台，請選擇一個管理項目開始編輯。</p>
                         </div>
+                    </div>
                     <?php else: ?>
-                        <?php
+                    <?php
                         $do=$_GET['do']??'home';
 			            $file="./backend/{$do}.php";
             

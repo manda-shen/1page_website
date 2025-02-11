@@ -40,12 +40,12 @@
 
 <body>
     <div class="row bg-white p-0">
-        
+
         <!-- 彈出視窗 -->
         <div id="cover" style="display:none; ">
             <div id="coverr">
                 <div id="cvr" class="modal" style="width:30% !important; height:40%;">
-                    
+
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="container-fluid sticky-top">
             <div class="nav-logo">
                 <a class="navbar-brand" href="#">
-                <img src="./upload/<?=$Logo->find(['sh'=>1])['img'];?>" alt="">
+                    <img src="./upload/<?=$Logo->find(['sh'=>1])['img'];?>" alt="">
                 </a>
             </div>
             <nav class="navbar navbar-expand-sm navbar-dark text-hover">
@@ -64,8 +64,8 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="mynavbar">
-                    <ul class="navbar-nav me-auto">
-                        <?php 
+                        <ul class="navbar-nav me-auto">
+                            <?php 
                         // 使用 $List 取代 $Menu
                         $mains = $List->all(['sh'=>1]);  // 移除 main_id 條件，因為目前不需要子選單
                         foreach($mains as $main){
@@ -75,17 +75,18 @@
                                     <?=$main['text']?>
                                 </a>
                             </li>
-                        <?php
+                            <?php
                         }
                         ?>
-                    </ul>
+                        </ul>
                     </div>
                     <div class="navbar-nav align-items-center ms-auto">
-                    <?php 
+                        <?php 
                     if(empty($_SESSION['login'])){
                     ?>
-                        <button class="btn btn-outline-light text-light w-100 m-2" onclick="op('#cover','#cvr','./modal/login.php')">管理登入</button>
-                    <?php
+                        <button class="btn btn-outline-light text-light w-100 m-2"
+                            onclick="op('#cover','#cvr','./modal/login.php')">管理登入</button>
+                        <?php
                     } else {
                     ?>
                         <button class="btn btn-outline-light text-light w-100 m-2">
@@ -94,17 +95,17 @@
                         <button class="btn btn-outline-light text-light w-100 m-2">
                             <a href="./api/logout.php" class="text-light">管理登出</a>
                         </button>
-                    <?php 
+                        <?php 
                     }
-                    ?>                
-                </div>
+                    ?>
+                    </div>
                 </div>
             </nav>
         </div>
 
         <?php if(isset($_GET['login'])): ?>
         <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             // 自動開啟登入 modal
             $('#cover').show();
             // 載入登入表單
@@ -116,30 +117,28 @@
 
 
 
-    <!-- Carousel Start -->
-    <?php
+        <!-- Carousel Start -->
+        <?php
     $images = $Image->all(['sh' => 1]);  // 取得所有啟用的輪播圖
     $count = count($images);  // 計算輪播圖數量
     ?>
-    <section id="lokiSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2800">
-        <!-- 輪播指示器 -->
-        <div class="carousel-indicators">
-        <?php
+        <section id="lokiSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2800">
+            <!-- 輪播指示器 -->
+            <div class="carousel-indicators">
+                <?php
         for($i = 0; $i < $count; $i++){
         ?>
-            <button type="button" 
-                    data-bs-target="#lokiSlider" 
-                    data-bs-slide-to="<?=$i;?>" 
+                <button type="button" data-bs-target="#lokiSlider" data-bs-slide-to="<?=$i;?>"
                     class="<?=($i==0)?'active':'';?>">
-            </button>
-        <?php
+                </button>
+                <?php
         }
         ?>
-        </div>
+            </div>
 
-        <!-- 輪播內容 -->
-        <div class="carousel-inner">
-            <?php
+            <!-- 輪播內容 -->
+            <div class="carousel-inner">
+                <?php
             $first = true;
             foreach($images as $image){
             ?>
@@ -150,31 +149,35 @@
                         <p class="d-none d-md-block"><?=$image['text2'];?></p>
                     </div>
                 </div>
-            <?php
+                <?php
                 $first = false;
             }
             ?>
-        </div>
+            </div>
 
-        <!-- 輪播控制按鈕 -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#lokiSlider" data-bs-slide="prev">
-            <i class="fas fa-angle-double-left fa-2x"></i>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#lokiSlider" data-bs-slide="next">
-            <i class="fas fa-angle-double-right fa-2x"></i>
-        </button>
-    </section>
+            <!-- 輪播控制按鈕 -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#lokiSlider" data-bs-slide="prev">
+                <i class="fas fa-angle-double-left fa-2x"></i>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#lokiSlider" data-bs-slide="next">
+                <i class="fas fa-angle-double-right fa-2x"></i>
+            </button>
+        </section>
         <!-- Carousel End -->
 
 
         <!-- About Start -->
+        <?php
+        $about = $About->find(1);
+        ?>
         <div id="about_us" class="container-xxl py-5">
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
-                        <h6 class="section-title text-start text-primary text-uppercase">About Us</h6>
-                        <h1 class="mb-4">Welcome to <span class="text-primary text-uppercase">天空小品</span></h1>
-                        <pre class="mb-4"><?=$About->find(['sh'=>1])['text'];?></pre>
+                        <h6 class="section-title text-start text-primary text-uppercase"><?=$about['title'];?></h6>
+                        <h1 class="mb-4"><?=$about['title2'];?> <span
+                                class="text-primary text-uppercase"><?=$about['title3'];?></span></h1>
+                        <pre class="mb-4"><?=$about['text'];?></pre>
                         <div class="row g-3 pb-4">
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="border rounded p-1">
@@ -209,17 +212,20 @@
                     <div class="col-lg-6">
                         <div class="row g-3">
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="img/02.jpg"
-                                    style="margin-top: 25%;">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s"
+                                    src="./upload/<?=$about['img'];?>" style="margin-top: 25%;">
                             </div>
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="img/06.webp">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s"
+                                    src="./upload/<?=$about['img2'];?>">
                             </div>
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="img/08.webp">
+                                <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s"
+                                    src="./upload/<?=$about['img3'];?>">
                             </div>
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="img/07.webp">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s"
+                                    src="./upload/<?=$about['img4'];?>">
                             </div>
                         </div>
                     </div>
@@ -230,64 +236,65 @@
 
 
         <!-- Room Start -->
-<div id="room" class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
-            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
-        </div>
-        <div class="row g-4">
-            <?php
+        <div id="room" class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
+                    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
+                </div>
+                <div class="row g-4">
+                    <?php
             $rooms = $Room->all(['sh' => 1]);  // 取得所有啟用的房間資料
             $delay = 0.1;  // 初始動畫延遲
             foreach($rooms as $room){
             ?>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="<?=$delay;?>s">
-                    <div class="room-item shadow rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="./upload/<?=$room['img'];?>" alt="<?=$room['text'];?>">
-                            <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">
-                                NT$ <?=$room['price'];?>/Night
-                            </small>
-                        </div>
-                        <div class="p-4 mt-2">
-                            <div class="d-flex justify-content-between mb-3">
-                                <h5 class="mb-0"><?=$room['text'];?></h5>
-                                <div class="ps-2">
-                                    <?php
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="<?=$delay;?>s">
+                        <div class="room-item shadow rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="./upload/<?=$room['img'];?>" alt="<?=$room['text'];?>">
+                                <small
+                                    class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">
+                                    NT$ <?=$room['price'];?>/Night
+                                </small>
+                            </div>
+                            <div class="p-4 mt-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0"><?=$room['text'];?></h5>
+                                    <div class="ps-2">
+                                        <?php
                                     // 顯示五顆星星
                                     for($i=0; $i<5; $i++){
                                         echo '<small class="fa fa-star text-primary"></small>';
                                     }
                                     ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-flex mb-3">
-                                <small class="border-end me-3 pe-3">
-                                    <i class="fa fa-bed text-primary me-2"></i><?=$room['beds'];?> Bed
-                                </small>
-                                <small class="border-end me-3 pe-3">
-                                    <i class="fa fa-bath text-primary me-2"></i><?=$room['people'];?> people
-                                </small>
-                                <small>
-                                    <i class="fa fa-wifi text-primary me-2"></i>Wifi
-                                </small>
-                            </div>
-                            <p class="text-body mb-3"><?=$room['info'];?></p>
-                            <div class="d-flex justify-content-between">
-                                <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                                <div class="d-flex mb-3">
+                                    <small class="border-end me-3 pe-3">
+                                        <i class="fa fa-bed text-primary me-2"></i><?=$room['beds'];?> Bed
+                                    </small>
+                                    <small class="border-end me-3 pe-3">
+                                        <i class="fa fa-bath text-primary me-2"></i><?=$room['people'];?> people
+                                    </small>
+                                    <small>
+                                        <i class="fa fa-wifi text-primary me-2"></i>Wifi
+                                    </small>
+                                </div>
+                                <p class="text-body mb-3"><?=$room['info'];?></p>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
+                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            <?php
+                    <?php
                 $delay += 0.2;  // 每個房間增加延遲時間
             }
             ?>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
         <!-- Room End -->
 
 
@@ -296,79 +303,80 @@
 $video = $Vedio->find(['sh' => 1]);  // 注意：資料表名稱是 Vedio
 ?>
 
-<!-- Video Start -->
-<div id="farming" class="container-xxl py-5 px-0 wow zoomIn" data-wow-delay="0.1s">
-    <div class="row g-0">
-        <div class="col-md-6 bg-light d-flex align-items-center">
-            <div class="p-5">
-                <h6 class="section-title text-start text-white text-uppercase mb-3"><?=$video['text'];?></h6>
-                <h1 class="text-white mb-4"><?=$video['text2'];?></h1>
-                <p class="text-white mb-4"><?=$video['text3'];?></p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="video">
-                <button type="button" class="btn-play" data-bs-toggle="modal"
-                    data-src="<?=$video['href'];?>" data-bs-target="#videoModal">
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 彈出視窗 -->
-<div id="videoModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content rounded-0">
-            <div class="modal-header">
-                <h5 class="modal-title">Youtube Video</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="ratio ratio-16x9">
-                    <iframe width="560" height="315" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+        <!-- Video Start -->
+        <div id="farming" class="container-xxl py-5 px-0 wow zoomIn" data-wow-delay="0.1s">
+            <div class="row g-0">
+                <div class="col-md-6 bg-light d-flex align-items-center">
+                    <div class="p-5">
+                        <h6 class="section-title text-start text-white text-uppercase mb-3"><?=$video['text'];?></h6>
+                        <h1 class="text-white mb-4"><?=$video['text2'];?></h1>
+                        <p class="text-white mb-4"><?=$video['text3'];?></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="video">
+                        <button type="button" class="btn-play" data-bs-toggle="modal" data-src="<?=$video['href'];?>"
+                            data-bs-target="#videoModal">
+                            <span></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- Video End -->
+
+        <!-- Modal 彈出視窗 -->
+        <div id="videoModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Youtube Video</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="ratio ratio-16x9">
+                            <iframe width="560" height="315" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Video End -->
 
 
         <!-- Service Start -->
         <div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="section-title text-center text-primary text-uppercase">Our Services</h6>
-            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
-        </div>
-        <div class="row g-4">
-            <?php
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-primary text-uppercase">Our Services</h6>
+                    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
+                </div>
+                <div class="row g-4">
+                    <?php
             $services = $Service->all(['sh' => 1]);
             $delay = 0.1;  // 初始動畫延遲
             foreach($services as $service){
             ?>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="<?=$delay;?>s">
-                    <a class="service-item rounded" href="">
-                        <div class="service-icon bg-transparent border rounded p-1">
-                            <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                <i class="<?=$service['icon_class'];?> fa-2x text-primary"></i>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="<?=$delay;?>s">
+                        <a class="service-item rounded" href="">
+                            <div class="service-icon bg-transparent border rounded p-1">
+                                <div
+                                    class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                    <i class="<?=$service['icon_class'];?> fa-2x text-primary"></i>
+                                </div>
                             </div>
-                        </div>
-                        <h5 class="mb-3"><?=$service['text'];?></h5>
-                        <p class="text-body mb-0"><?=$service['text2'];?></p>
-                    </a>
-                </div>
-            <?php
+                            <h5 class="mb-3"><?=$service['text'];?></h5>
+                            <p class="text-body mb-0"><?=$service['text2'];?></p>
+                        </a>
+                    </div>
+                    <?php
                 $delay += 0.1;  // 每個服務增加延遲時間
             }
             ?>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
         <!-- Service End -->
 
 
@@ -428,8 +436,8 @@ $video = $Vedio->find(['sh' => 1]);  // 注意：資料表名稱是 Vedio
                     <div class=" wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded shadow overflow-hidden">
                             <div class="position-relative">
-                            <?php $map=$Map->find(['sh'=>1]); ?>
-                            <img class="img-fluid" src="./upload/<?=$map['img']??'no-image.jpg';?>" alt="農場地圖">
+                                <?php $map=$Map->find(['sh'=>1]); ?>
+                                <img class="img-fluid" src="./upload/<?=$map['img']??'no-image.jpg';?>" alt="農場地圖">
                                 <div
                                     class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                                 </div>

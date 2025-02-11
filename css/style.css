@@ -5,7 +5,7 @@
 }
 
 .nav-link:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    /* background-color: rgba(0, 0, 0, 0.1); */
     color: white;
     /* 修正未完成的 color 屬性 */
 }
