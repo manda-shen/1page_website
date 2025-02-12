@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2025-02-09 23:57:34
+-- 產生時間： 2025-02-12 06:42:27
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -29,18 +29,25 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `about` (
   `id` int(10) UNSIGNED NOT NULL,
+  `title` text NOT NULL,
+  `title2` text NOT NULL,
+  `title3` text NOT NULL,
   `text` text NOT NULL,
-  `sh` int(1) UNSIGNED NOT NULL DEFAULT 1
+  `img` text NOT NULL,
+  `img2` text NOT NULL,
+  `img3` text NOT NULL,
+  `img4` text NOT NULL,
+  `nb` int(10) UNSIGNED NOT NULL,
+  `nb2` int(10) UNSIGNED NOT NULL,
+  `nb3` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `about`
 --
 
-INSERT INTO `about` (`id`, `text`, `sh`) VALUES
-(1, '天空小品休閒農場 · 晨曦能量谷\r\n為「參與式農場」位於新北市淡水區-滬尾休閒農業區，\r\n其農產品採自然農法種植，吸收日月精華之健康農產品為主軸。 \r\n\r\n本農場為三個姊妺與三個先生同心經營，主張「3+3」經營理念，\r\n第一個「3」為：共耕、共饗、共好；\r\n第二個「3」為：生產、生活、生態。 \r\n\r\n希望來到本農場活動和一起生活的人們皆能感受到三生有幸般地幸福洋溢。', 1),
-(2, 'about me about me about me about me about me about me about me \r\nabout me about me about me about me about me about me about me \r\nabout me about me about me about me about me about me about me \r\nabout me about me about me ', 0),
-(7, 'about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / about me / ', 1);
+INSERT INTO `about` (`id`, `title`, `title2`, `title3`, `text`, `img`, `img2`, `img3`, `img4`, `nb`, `nb2`, `nb3`) VALUES
+(1, 'about us', 'Welcome to', '天空小品', '天空小品休閒農場 · 晨曦能量谷\r\n為「參與式農場」位於新北市淡水區-滬尾休閒農業區，\r\n其農產品採自然農法種植，吸收日月精華之健康農產品為主軸。 \r\n\r\n本農場為三個姊妺與三個先生同心經營，主張「3+3」經營理念，\r\n第一個「3」為：共耕、共饗、共好；\r\n第二個「3」為：生產、生活、生態。 \r\n\r\n希望來到本農場活動和一起生活的人們皆能感受到三生有幸般地幸福洋溢。', '02.jpg', '06.webp', '08.webp', '07.webp', 5, 8, 12);
 
 -- --------------------------------------------------------
 

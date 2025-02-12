@@ -105,10 +105,11 @@ $do = $_GET['do'] ?? 'home';
                     <li class="nav-item"><a href="?do=map" class="nav-link text-muted"><i class="bi bi-geo-alt"></i>
                             導覽圖管理</a></li>
                     <!-- <li class="nav-item"><a href="?do=footer" class="nav-link text-muted"><i class="bi bi-file-earmark"></i> 頁尾管理</a></li> -->
-                    <button class="btn btn-outline-primary w-100 m-2"><a href="index.php">首頁</a></button>
+
 
                 </div>
             </nav>
+            <button class="btn btn-outline-primary w-50 m-2 position-absolute bottom-0 start-0"><a href="index.php">首頁</a></button>
         </div>
         <!-- Sidebar End -->
 
